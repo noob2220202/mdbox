@@ -20,7 +20,7 @@ npm run dev            # http://localhost:3000
 
 ```bash
 npm run build
-npm run start -- -p 3100
+npm run start -- -p 9007
 ```
 
 첫 요청이 들어오면 `.data/store.json` 이 자동 생성되며 주문·회원·관리자 계정이 시드됩니다.
@@ -153,11 +153,33 @@ npm run build
 pm2 restart myeongdong-exchange     # 최초 1회는 pm2 start ecosystem.config.js
 ```
 
-`ecosystem.config.js` 는 `next start -p 3100` 으로 실행하며 `NODE_ENV=production` 과
+`ecosystem.config.js` 는 `next start -p 9007` 으로 실행하며 `NODE_ENV=production` 과
 `ADMIN_SESSION_SECRET` 을 env 로 주입합니다. 배포 전에 `ADMIN_SESSION_SECRET` 값을
 반드시 임의의 긴 문자열로 교체하세요.
 
 `.data/` 디렉터리는 프로세스 실행 계정이 쓸 수 있어야 하며, 백업 대상에 포함하시기 바랍니다.
+
+### Caddy 리버스 프록시
+
+기존 Caddyfile 에 아래 블록만 추가하면 됩니다. TLS 발급·갱신과 `X-Forwarded-Proto` 전달은
+Caddy 가 자동으로 처리합니다.
+
+```caddyfile
+exchange.example.com {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:9007
+}
+```
+
+```bash
+caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+```
+
+9007 포트는 방화벽에서 열지 마세요. 외부에는 Caddy 만 노출하고 앱은 루프백으로만 접근합니다.
+
+> 관리자 세션 쿠키는 `NODE_ENV=production` 에서 `secure` 속성으로 발급됩니다.
+> 반드시 HTTPS 도메인으로 접속해야 로그인이 유지됩니다.
 
 ---
 

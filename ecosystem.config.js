@@ -14,7 +14,7 @@ module.exports = {
       name: "myeongdong-exchange",
       cwd: __dirname,
       script: "node_modules/next/dist/bin/next",
-      args: "start -p 3100",
+      args: "start -p 9007",
       instances: 1,
       exec_mode: "fork",
       autorestart: true,
@@ -22,7 +22,7 @@ module.exports = {
       time: true,
       env: {
         NODE_ENV: "production",
-        PORT: "3100",
+        PORT: "9007",
         ADMIN_SESSION_SECRET: "change-me-to-a-long-random-string",
       },
     },
