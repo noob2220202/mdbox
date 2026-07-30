@@ -153,9 +153,14 @@ npm run build
 pm2 restart myeongdong-exchange     # 최초 1회는 pm2 start ecosystem.config.js
 ```
 
-`ecosystem.config.js` 는 `next start -p 9007` 으로 실행하며 `NODE_ENV=production` 과
-`ADMIN_SESSION_SECRET` 을 env 로 주입합니다. 배포 전에 `ADMIN_SESSION_SECRET` 값을
-반드시 임의의 긴 문자열로 교체하세요.
+`ecosystem.config.js` 는 `next start -p 9007` 으로 실행하며 `NODE_ENV=production` 을 주입합니다.
+`ADMIN_SESSION_SECRET` 은 저장소에 두지 않고 서버의 `.env.production.local` 에 넣습니다.
+`next start` 가 실행 시 이 파일을 읽어가므로 설정 파일을 손댈 필요가 없습니다.
+
+```bash
+printf 'ADMIN_SESSION_SECRET=%s\n' "$(openssl rand -hex 32)" > .env.production.local
+chmod 600 .env.production.local
+```
 
 `.data/` 디렉터리는 프로세스 실행 계정이 쓸 수 있어야 하며, 백업 대상에 포함하시기 바랍니다.
 

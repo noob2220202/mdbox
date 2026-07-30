@@ -23,7 +23,8 @@ module.exports = {
       env: {
         NODE_ENV: "production",
         PORT: "9007",
-        ADMIN_SESSION_SECRET: "change-me-to-a-long-random-string",
+        // ADMIN_SESSION_SECRET 는 저장소에 커밋하지 않습니다.
+        // 서버의 .env.production.local 에 넣어두면 next 가 실행 시 읽어갑니다.
       },
     },
   ],
