@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -24,22 +25,14 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur">
       <div className="md-shell flex h-18 items-center justify-between gap-6 py-3">
         <Link href="/" className="flex items-center gap-3" aria-label={`${BUSINESS.brand} 홈`}>
-          <span className="flex h-11 w-11 items-center justify-center rounded-token bg-ink text-gold-2">
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden>
-              <path
-                d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12 8.2v7.6M9.6 10.2c0-1 1.1-1.7 2.4-1.7s2.4.7 2.4 1.7-1.1 1.5-2.4 1.8-2.4.8-2.4 1.8 1.1 1.7 2.4 1.7 2.4-.7 2.4-1.7"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
+          <Image
+            src="/logo-mark.png"
+            alt=""
+            width={540}
+            height={453}
+            priority
+            className="h-10 w-auto"
+          />
           <span className="leading-tight">
             <span className="block font-display text-[0.62rem] font-extrabold tracking-[0.28em] text-gold">
               {BUSINESS.brandEn}

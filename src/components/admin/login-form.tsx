@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, type FormEvent } from "react";
 
 import { BUSINESS } from "@/lib/site";
@@ -39,22 +40,14 @@ export function LoginForm({ onSuccess }: { onSuccess: (admin: AdminIdentity) => 
     <div className="flex min-h-screen items-center justify-center px-5 py-16">
       <div className="w-full max-w-sm">
         <div className="text-center">
-          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-token bg-ink text-gold-2">
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden>
-              <path
-                d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12 8.2v7.6M9.6 10.2c0-1 1.1-1.7 2.4-1.7s2.4.7 2.4 1.7-1.1 1.5-2.4 1.8-2.4.8-2.4 1.8 1.1 1.7 2.4 1.7 2.4-.7 2.4-1.7"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
+          <Image
+            src="/logo-full.png"
+            alt="MONEY BOX"
+            width={627}
+            height={606}
+            priority
+            className="mx-auto h-16 w-auto"
+          />
           <p className="md-eyebrow mt-4">{BUSINESS.brandEn}</p>
           <h1 className="mt-2 text-xl font-bold text-ink">주문 관리 시스템</h1>
           <p className="mt-1.5 text-xs text-muted">관리자 계정으로 로그인해 주세요.</p>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { useToast } from "@/components/ui/toast";
@@ -182,9 +183,14 @@ export function Dashboard({
     <div className="min-h-screen">
       <header className="border-b border-line bg-ink">
         <div className="md-shell flex flex-wrap items-center justify-between gap-4 py-5">
-          <div>
-            <p className="md-eyebrow text-gold-2">{BUSINESS.brandEn} · Admin</p>
-            <h1 className="mt-1 text-lg font-bold text-on-ink">주문 관리</h1>
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center justify-center rounded-token-sm bg-surface p-1.5">
+              <Image src="/logo-mark.png" alt="" width={540} height={453} className="h-7 w-auto" />
+            </span>
+            <div>
+              <p className="md-eyebrow text-gold-2">{BUSINESS.brandEn} · Admin</p>
+              <h1 className="mt-1 text-lg font-bold text-on-ink">주문 관리</h1>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">

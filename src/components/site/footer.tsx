@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { NewsletterForm } from "@/components/site/newsletter-form";
@@ -11,7 +12,10 @@ export function Footer() {
     <footer className="mt-24 border-t border-line-dark bg-ink text-on-ink-muted">
       <div className="md-shell grid gap-12 py-16 lg:grid-cols-[1.2fr_2fr]">
         <div>
-          <p className="font-display text-xs font-extrabold tracking-[0.28em] text-gold-2">
+          <span className="inline-flex items-center justify-center rounded-token bg-surface px-3 py-2.5">
+            <Image src="/logo-full.png" alt="MONEY BOX" width={627} height={606} className="h-14 w-auto" />
+          </span>
+          <p className="mt-5 font-display text-xs font-extrabold tracking-[0.28em] text-gold-2">
             {BUSINESS.brandEn}
           </p>
           <p className="mt-2 text-2xl font-bold text-on-ink">{BUSINESS.brand}</p>
