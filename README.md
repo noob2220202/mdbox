@@ -32,8 +32,8 @@ npm run start -- -p 9007
 
 | 항목 | 값 |
 | --- | --- |
-| 접속 경로 | `/admin` |
-| 이메일 | `admin@myeongdong-exchange.kr` |
+| 접속 경로 | `https://mdexchange.store/admin` |
+| 이메일 | `admin@mdexchange.store` |
 | 비밀번호 | `MdExchange!2026` |
 
 - 미인증 상태에서는 로그인 폼만 노출되며, 대시보드 마크업 자체가 렌더링되지 않습니다.
@@ -161,11 +161,11 @@ pm2 restart myeongdong-exchange     # 최초 1회는 pm2 start ecosystem.config.
 
 ### Caddy 리버스 프록시
 
-기존 Caddyfile 에 아래 블록만 추가하면 됩니다. TLS 발급·갱신과 `X-Forwarded-Proto` 전달은
-Caddy 가 자동으로 처리합니다.
+서비스 도메인은 **mdexchange.store** 입니다. 기존 Caddyfile 에 아래 블록만 추가하면 됩니다.
+TLS 발급·갱신과 `X-Forwarded-Proto` 전달은 Caddy 가 자동으로 처리합니다.
 
 ```caddyfile
-exchange.example.com {
+mdexchange.store, www.mdexchange.store {
     encode zstd gzip
     reverse_proxy 127.0.0.1:9007
 }

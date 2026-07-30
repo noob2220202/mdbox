@@ -1,3 +1,6 @@
+/** 서비스 도메인 — 메타데이터·사이트맵의 기준 URL */
+export const SITE_URL = "https://mdexchange.store";
+
 /**
  * 사업자 정보. 확정되지 않은 항목은 null 로 두면 화면에서 자동으로 숨겨집니다.
  */
@@ -10,7 +13,7 @@ export const BUSINESS = {
   corporateNo: "110111-6712966",
   address: "서울특별시 중구 남대문로 52-1 (명동2가)",
   tel: "02-3789-0888",
-  email: "help@myeongdong-exchange.kr",
+  email: "help@mdexchange.store",
   /** 통신판매업신고번호 — 미확정 */
   mailOrderNo: null as string | null,
   /** 개인정보보호책임자 — 미확정 */

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Noto_Sans_KR } from "next/font/google";
 
-import { BUSINESS } from "@/lib/site";
+import { BUSINESS, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const notoSansKr = Noto_Sans_KR({
@@ -19,7 +19,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://myeongdong-exchange.kr"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${BUSINESS.brand} · 명동 한복판의 환전 예약`,
     template: `%s | ${BUSINESS.brand}`,
@@ -32,7 +32,10 @@ export const metadata: Metadata = {
     description: "16개 통화, 오늘 고시 환율로 미리 예약하고 명동에서 바로 수령하세요.",
     type: "website",
     locale: "ko_KR",
+    url: SITE_URL,
+    siteName: BUSINESS.brand,
   },
+  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
