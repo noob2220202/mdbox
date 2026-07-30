@@ -12,13 +12,15 @@ export const BUSINESS = {
   registrationNo: "389-85-01573",
   corporateNo: "110111-6712966",
   address: "서울특별시 중구 남대문로 52-1 (명동2가)",
-  tel: "02-3789-0888",
+  /** 대표전화 — 미확정 */
+  tel: null as string | null,
   email: "help@mdexchange.store",
   /** 통신판매업신고번호 — 미확정 */
   mailOrderNo: null as string | null,
   /** 개인정보보호책임자 — 미확정 */
   privacyOfficer: null as string | null,
   establishedAt: "2021.09.01",
+  establishedYear: 2021,
 } as const;
 
 export type BusinessField = { label: string; value: string | null };

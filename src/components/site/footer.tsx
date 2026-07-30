@@ -57,7 +57,7 @@ export function Footer() {
           </dl>
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p>
-              © {new Date().getFullYear()} {BUSINESS.legalName}. All rights reserved.
+              © {BUSINESS.establishedYear} {BUSINESS.legalName}. All rights reserved.
             </p>
             <div className="flex gap-4">
               <Link href="/terms" className="transition-colors hover:text-gold-2">

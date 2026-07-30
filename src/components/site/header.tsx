@@ -103,20 +103,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${BUSINESS.tel.replace(/-/g, "")}`}
-            className="hidden items-center gap-2 rounded-token-sm px-3 py-2 text-sm font-semibold text-text transition-colors hover:text-gold xl:flex"
+          <Link
+            href="/order/lookup"
+            className="hidden rounded-token-sm px-3 py-2 text-sm font-semibold text-text transition-colors hover:text-gold xl:block"
           >
-            <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden>
-              <path
-                d="M4.5 3h3l1.5 3.5-2 1.4a10 10 0 0 0 4.6 4.6l1.4-2L16.5 12v3a1.5 1.5 0 0 1-1.7 1.5A13 13 0 0 1 3.5 4.7 1.5 1.5 0 0 1 5 3Z"
-                stroke="currentColor"
-                strokeWidth="1.3"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="md-tabular">{BUSINESS.tel}</span>
-          </a>
+            예약 내역 확인
+          </Link>
 
           <Link
             href="/checkout"

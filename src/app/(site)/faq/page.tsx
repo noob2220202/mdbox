@@ -72,7 +72,7 @@ export default function FaqPage() {
       <PageHero
         eyebrow="FAQ"
         title="자주 묻는 질문"
-        description="예약 전에 확인하면 좋은 내용을 모았습니다. 여기에 없는 질문은 대표전화로 문의해 주세요."
+        description="예약 전에 확인하면 좋은 내용을 모았습니다. 여기에 없는 질문은 이메일로 문의해 주세요."
         breadcrumb={[{ href: "/faq", label: "자주 묻는 질문" }]}
       />
 

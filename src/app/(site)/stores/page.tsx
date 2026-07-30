@@ -42,17 +42,6 @@ export default function StoresPage() {
                   <dd className="text-text">{branch.address}</dd>
                 </div>
                 <div className="flex gap-4">
-                  <dt className="w-20 shrink-0 text-xs font-semibold text-muted">전화</dt>
-                  <dd>
-                    <a
-                      href={`tel:${branch.tel.replace(/-/g, "")}`}
-                      className="md-tabular text-gold underline-offset-4 hover:underline"
-                    >
-                      {branch.tel}
-                    </a>
-                  </dd>
-                </div>
-                <div className="flex gap-4">
                   <dt className="w-20 shrink-0 text-xs font-semibold text-muted">영업시간</dt>
                   <dd className="md-tabular text-text">{branch.hours}</dd>
                 </div>
@@ -96,15 +85,15 @@ export default function StoresPage() {
             <li>· 모든 지점은 동일한 고시 환율을 사용합니다.</li>
             <li>· 예약 건은 별도 창구에서 처리되어 대기가 거의 없습니다.</li>
             <li>· 통화·권종별 보유량은 지점마다 다를 수 있습니다.</li>
-            <li>· 공휴일 운영 여부는 지점으로 확인해 주세요.</li>
+            <li>· 공휴일 운영 여부는 매장으로 문의해 주세요.</li>
           </ul>
-          <p className="md-tabular mt-6 text-sm font-semibold text-ink">
-            대표전화{" "}
+          <p className="mt-6 text-sm font-semibold text-ink">
+            문의{" "}
             <a
-              href={`tel:${BUSINESS.tel.replace(/-/g, "")}`}
+              href={`mailto:${BUSINESS.email}`}
               className="text-gold underline-offset-4 hover:underline"
             >
-              {BUSINESS.tel}
+              {BUSINESS.email}
             </a>
           </p>
         </div>
