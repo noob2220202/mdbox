@@ -1,0 +1,280 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   명동 환전소 디자인 토큰
+   모든 색상·타이포·형태는 여기서만 정의하고, 화면에서는 토큰만 사용합니다.
+   ------------------------------------------------------------------ */
+:root {
+  /* 브랜드 — 미드나잇 네이비 + 골드 */
+  --md-ink: #0a1226;
+  --md-ink-2: #14203f;
+  --md-ink-3: #22315a;
+  --md-gold: #b8892f;
+  --md-gold-2: #d8ab4d;
+  --md-gold-3: #f2e2bd;
+  --md-gold-contrast: #1a1204;
+
+  /* 표면 */
+  --md-canvas: #f8f5ef;
+  --md-canvas-2: #f0ebe0;
+  --md-surface: #ffffff;
+  --md-surface-2: #fbf9f5;
+  --md-overlay: rgb(10 18 38 / 0.55);
+
+  /* 선 */
+  --md-line: #e4ddcf;
+  --md-line-2: #cfc5b2;
+  --md-line-dark: #26314f;
+
+  /* 텍스트 */
+  --md-text: #17203a;
+  --md-muted: #67708a;
+  --md-faint: #9aa1b4;
+  --md-on-ink: #f4f1e9;
+  --md-on-ink-muted: #a9b2c9;
+
+  /* 신호 */
+  --md-up: #0f8f6b;
+  --md-up-soft: #e3f5ef;
+  --md-down: #c53b3b;
+  --md-down-soft: #fbe9e9;
+  --md-info: #2f5fb8;
+  --md-info-soft: #e8effb;
+
+  /* 주문 상태 */
+  --md-st-pending: #a2761b;
+  --md-st-pending-soft: #fbf1dc;
+  --md-st-paid: #2f5fb8;
+  --md-st-paid-soft: #e8effb;
+  --md-st-preparing: #6b4bb5;
+  --md-st-preparing-soft: #efeafb;
+  --md-st-shipping: #0d7c8c;
+  --md-st-shipping-soft: #e0f3f6;
+  --md-st-delivered: #0f8f6b;
+  --md-st-delivered-soft: #e3f5ef;
+  --md-st-cancelled: #7d8393;
+  --md-st-cancelled-soft: #eeeff2;
+
+  /* 형태 */
+  --md-radius-sm: 0.375rem;
+  --md-radius: 0.75rem;
+  --md-radius-lg: 1.25rem;
+  --md-radius-xl: 2rem;
+  --md-shadow-sm: 0 1px 2px rgb(10 18 38 / 0.06);
+  --md-shadow: 0 8px 24px -12px rgb(10 18 38 / 0.18);
+  --md-shadow-lg: 0 28px 60px -28px rgb(10 18 38 / 0.35);
+}
+
+@theme inline {
+  --color-ink: var(--md-ink);
+  --color-ink-2: var(--md-ink-2);
+  --color-ink-3: var(--md-ink-3);
+  --color-gold: var(--md-gold);
+  --color-gold-2: var(--md-gold-2);
+  --color-gold-3: var(--md-gold-3);
+  --color-gold-contrast: var(--md-gold-contrast);
+
+  --color-canvas: var(--md-canvas);
+  --color-canvas-2: var(--md-canvas-2);
+  --color-surface: var(--md-surface);
+  --color-surface-2: var(--md-surface-2);
+  --color-overlay: var(--md-overlay);
+
+  --color-line: var(--md-line);
+  --color-line-2: var(--md-line-2);
+  --color-line-dark: var(--md-line-dark);
+
+  --color-text: var(--md-text);
+  --color-muted: var(--md-muted);
+  --color-faint: var(--md-faint);
+  --color-on-ink: var(--md-on-ink);
+  --color-on-ink-muted: var(--md-on-ink-muted);
+
+  --color-up: var(--md-up);
+  --color-up-soft: var(--md-up-soft);
+  --color-down: var(--md-down);
+  --color-down-soft: var(--md-down-soft);
+  --color-info: var(--md-info);
+  --color-info-soft: var(--md-info-soft);
+
+  --color-st-pending: var(--md-st-pending);
+  --color-st-pending-soft: var(--md-st-pending-soft);
+  --color-st-paid: var(--md-st-paid);
+  --color-st-paid-soft: var(--md-st-paid-soft);
+  --color-st-preparing: var(--md-st-preparing);
+  --color-st-preparing-soft: var(--md-st-preparing-soft);
+  --color-st-shipping: var(--md-st-shipping);
+  --color-st-shipping-soft: var(--md-st-shipping-soft);
+  --color-st-delivered: var(--md-st-delivered);
+  --color-st-delivered-soft: var(--md-st-delivered-soft);
+  --color-st-cancelled: var(--md-st-cancelled);
+  --color-st-cancelled-soft: var(--md-st-cancelled-soft);
+
+  --font-sans: var(--font-noto-sans-kr), system-ui, sans-serif;
+  --font-display: var(--font-manrope), var(--font-noto-sans-kr), system-ui, sans-serif;
+
+  --radius-token-sm: var(--md-radius-sm);
+  --radius-token: var(--md-radius);
+  --radius-token-lg: var(--md-radius-lg);
+  --radius-token-xl: var(--md-radius-xl);
+
+  --shadow-token-sm: var(--md-shadow-sm);
+  --shadow-token: var(--md-shadow);
+  --shadow-token-lg: var(--md-shadow-lg);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--md-canvas);
+    color: var(--md-text);
+    font-family: var(--font-noto-sans-kr), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    /* 한글이 단어 중간에서 잘리지 않도록 합니다. */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  ::selection {
+    background-color: var(--md-gold-3);
+    color: var(--md-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--md-gold);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .md-shell {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .md-shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  .md-eyebrow {
+    font-family: var(--font-manrope), sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--md-gold);
+  }
+
+  .md-tabular {
+    font-family: var(--font-manrope), sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .md-card {
+    background-color: var(--md-surface);
+    border: 1px solid var(--md-line);
+    border-radius: var(--md-radius-lg);
+    box-shadow: var(--md-shadow-sm);
+  }
+
+  .md-hairline {
+    height: 1px;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--md-line-2) 20%,
+      var(--md-line-2) 80%,
+      transparent
+    );
+  }
+
+  /* 지폐 결 느낌의 미세한 배경 문양 */
+  .md-guilloche {
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--md-gold-3) 1px, transparent 0),
+      linear-gradient(180deg, transparent, var(--md-canvas-2));
+    background-size:
+      22px 22px,
+      100% 100%;
+  }
+
+  .md-ink-grid {
+    background-image:
+      linear-gradient(var(--md-line-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--md-line-dark) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
+
+@keyframes md-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes md-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes md-pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes md-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.md-anim-fade-up {
+  animation: md-fade-up 0.5s ease-out both;
+}
+
+.md-anim-slide-in {
+  animation: md-slide-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.md-anim-pop {
+  animation: md-pop 0.22s ease-out both;
+}
+
+.md-marquee-track {
+  animation: md-marquee 45s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-anim-fade-up,
+  .md-anim-slide-in,
+  .md-anim-pop,
+  .md-marquee-track {
+    animation: none;
+  }
+}
