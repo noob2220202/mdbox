@@ -188,6 +188,68 @@ sudo systemctl reload caddy
 
 ---
 
+## 다른 도메인으로 하나 더 띄우기
+
+같은 코드베이스를 **별도 디렉터리에 clone** 하고 `.env.production.local` 만 다르게 두면
+독립된 사이트가 하나 더 뜹니다. 주문 데이터(`.data/store.json`)와 관리자 계정도 완전히 분리됩니다.
+
+```bash
+git clone -b <브랜치> <저장소> ~/md-exchange
+cd ~/md-exchange
+
+cat > .env.production.local <<'EOF'
+NEXT_PUBLIC_SITE_URL=https://md-exchange.store
+NEXT_PUBLIC_BIZ_CEO=노진철
+ADMIN_SESSION_SECRET=<openssl rand -hex 32 결과>
+EOF
+chmod 600 .env.production.local
+
+npm ci
+npm run build
+APP_NAME=md-exchange PORT=9009 pm2 start ecosystem.config.js
+pm2 save
+```
+
+Caddy 블록:
+
+```caddyfile
+md-exchange.store, www.md-exchange.store {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:9009
+}
+```
+
+### 인스턴스별로 바꿀 수 있는 값
+
+지정하지 않으면 괄호 안 기본값이 쓰입니다. `NEXT_PUBLIC_*` 는 빌드 시점에 삽입되므로
+값을 바꾼 뒤에는 반드시 `npm run build` 를 다시 실행하세요.
+
+| 환경변수 | 설명 (기본값) |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | 서비스 도메인 (`https://mdexchange.store`) |
+| `NEXT_PUBLIC_BIZ_CEO` | 대표자 (`장창우, 김민수 (각자대표)`) |
+| `NEXT_PUBLIC_BIZ_LEGAL_NAME` | 상호 (`주식회사 머니박스 명동지점`) |
+| `NEXT_PUBLIC_BIZ_REG_NO` | 사업자등록번호 (`389-85-01573`) |
+| `NEXT_PUBLIC_BIZ_CORP_NO` | 법인등록번호 (`110111-6712966`) |
+| `NEXT_PUBLIC_BIZ_ADDRESS` | 주소 (등록증 기재 주소) |
+| `NEXT_PUBLIC_BIZ_EMAIL` | 문의 이메일 (`help@<도메인>`) |
+| `NEXT_PUBLIC_BIZ_TEL` | 대표전화 (미설정 시 화면에서 숨김) |
+| `NEXT_PUBLIC_BIZ_MAIL_ORDER_NO` | 통신판매업신고번호 (미설정 시 숨김) |
+| `NEXT_PUBLIC_BIZ_PRIVACY_OFFICER` | 개인정보보호책임자 (미설정 시 숨김) |
+| `NEXT_PUBLIC_BRAND` / `NEXT_PUBLIC_BRAND_EN` | 브랜드명 (`명동 환전소` / `MYEONGDONG EXCHANGE`) |
+| `NEXT_PUBLIC_ORDER_PREFIX` | 주문번호 접두사 (`MD`) |
+| `SEED_ADMIN_EMAIL` | 시드 관리자 이메일 (`admin@<도메인>`) |
+| `SEED_ADMIN_PASSWORD` | 시드 관리자 비밀번호 (`MdExchange!2026`) |
+| `ADMIN_SESSION_SECRET` | 세션 서명 키 (미설정 시 자동 생성 후 `.data` 에 보관) |
+
+`SEED_*` 값은 `.data/store.json` 이 처음 만들어질 때만 반영됩니다.
+파일이 이미 있으면 시드는 실행되지 않습니다.
+
+> 사업자등록번호·상호가 서로 다른 사업자라면 대표자명만 바꾸지 말고
+> 해당 항목들도 함께 지정하세요. 푸터의 사업자 정보는 등록증 기재 사항과 일치해야 합니다.
+
+---
+
 ## 검증
 
 ```bash

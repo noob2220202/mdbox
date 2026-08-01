@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 import { hashPassword } from "@/lib/auth";
 import { CURRENCIES, depositFor, getCurrency, toKrw } from "@/lib/currencies";
 import { BRANCHES } from "@/lib/branches";
-import { ORDER_NO_PREFIX } from "@/lib/site";
+import { ORDER_NO_PREFIX, SITE_HOST } from "@/lib/site";
 import type {
   Member,
   Order,
@@ -19,8 +19,9 @@ const DATA_DIR = path.join(process.cwd(), ".data");
 const DATA_FILE = path.join(DATA_DIR, "store.json");
 const STORE_VERSION = 1;
 
-export const SEED_ADMIN_EMAIL = "admin@mdexchange.store";
-export const SEED_ADMIN_PASSWORD = "MdExchange!2026";
+/** 시드 관리자 계정 — 기본값은 서비스 도메인을 따릅니다. */
+export const SEED_ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL?.trim() || `admin@${SITE_HOST}`;
+export const SEED_ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD?.trim() || "MdExchange!2026";
 
 /** 파일 읽기/쓰기 직렬화용 큐 — 동시 요청에서 주문번호 충돌과 덮어쓰기를 막습니다. */
 let queue: Promise<unknown> = Promise.resolve();
